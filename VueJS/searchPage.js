@@ -1,71 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+export default {
+    data() {
+        return {
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="./style.css"> -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>BTCN2</title>
-    <script src="./db/data.js"></script>
-
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Fontawesome -->
-
-
-
-</head>
-
-<body>
-    <!-- <script type="importmap">
-        {
-          "imports": {
-            "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
-          }
         }
-    </script>
-    <script type="module">
-        import { createApp } from "vue";
-        import main from "./main.js"
-        createApp(main).mount("#app");
-    </script> -->
-
-    <div id="app">
-        <div class="app-container container">
-            <div class="row">
-                <header class="header bg-white rounded">
-                    <span>21120589</span>
-                    <h2>Movies info</h2>
-
-                    <div class="wrapper">
-                        <div class="span">key API</div>
-
-                    </div>
-                </header>
-
-                <nav class="navbar navbar-expand-lg mt-2 bg-white rounded">
-                    <div class="container">
-                        <a class="fw-bold navbar-brand p-0" href="#" v-on:click="handleHome">Home</a>
-
-                        <div class="navbar__searching-wrapper">
-                            <form class="d-flex navbar__form" action="" role="search">
-                                <input type="text" style="outline: none;" class="navbar__form-input rounded" id=""
-                                    placeholder="Search" v-model="searchInput">
-                                <button type="button" class="btn btn-mine ml-2"
-                                    v-on:click="handleSearch">Search</button>
-                            </form>
-                        </div>
-                    </div>
-                </nav>
-
-                <div class="body">
-
-
-                    <div class=" container search-page">
+    },
+    template: `
+    <div class=" container search-page">
                         <div class="row">
                             <div class="col-md-4 mt-2 ">
                                 <div class="col-md-12 p-0 card search-page-movie">
@@ -127,22 +67,5 @@
                        
                       
                     </div>
-                </div>
-                <!-- container -->
-
-
-
-            </div>
-            <!-- class="row" -->
-
-        </div>
-    </div>
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
-    <script src="https://code.jquery.com/jquery-3.7.1.js"
-        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-
-</body>
-
-</html>
+    `
+}

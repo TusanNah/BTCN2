@@ -25,6 +25,10 @@
     align-items: center;
 }
 
+.btn:focus {
+  outline: none !important;
+}
+
 .btn-mine {
     border: 1px solid green !important;
     color: green !important;
