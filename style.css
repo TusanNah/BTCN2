@@ -33,9 +33,55 @@
 .movie-list {
     padding: 0;
     list-style: none;
-    display: inline-flex;
+}
+.movie-popular__wrapper {
+    display: flex;
 }
 .movie-item {
-    display: block;
     padding: 3px;
+    /* height: 60%; */
+    transition: transform 1s;
+    
 }
+/* transform when hover movie */
+.movie-item:hover {
+    transform: scale(120%);
+}
+/***** Global Slide *****/
+  
+  /***** Slide Right *****/
+  .slide-right {
+    position: relative;
+    animation: 1s slide-right;
+  }
+  @keyframes slide-right {
+    from {
+      left: 40%;
+    }
+    to {
+      left: 0%;
+    }
+  }
+  
+  /***** Slide Left *****/
+  .slide-left {
+    position: relative;
+    animation: 1s slide-left;
+  }
+  @keyframes slide-left {
+    from {
+      right: 40%;
+    }
+    to {
+      right: 0%;
+    }
+  }
+.search-page-movie {
+    background-color: white;
+    border: 1px solid #bdb7b7 !important;
+    border-radius: 5px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+

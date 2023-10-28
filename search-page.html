@@ -7,8 +7,8 @@
     <!-- <link rel="stylesheet" href="./style.css"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Movie</title>
-    <script></script>
+    <title>BTCN2</title>
+    <script src="./db/data.js"></script>
 
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -39,7 +39,7 @@
             <div class="row">
                 <header class="header bg-white rounded">
                     <span>21120589</span>
-                    <h1>Movies info</h1>
+                    <h2>Movies info</h2>
 
                     <div class="wrapper">
                         <div class="span">key API</div>
@@ -62,58 +62,45 @@
                     </div>
                 </nav>
 
-                <div class="body px-0">
+                <div class="container">
+                    <!-- home-page -->
 
-                    <div v-if="isMoviePage" class="movie-page container"
-                        style="background-image: url(https://m.media-amazon.com/images/M/MV5BODI0NTFkMTItOTYyNC00MzQ4LTgzZWMtMzdhMDAyOWU5YjA5XkEyXkFqcGdeQXVyNzQ1ODk3MTQ@._V1_Ratio0.7046_AL_.jpg);">
-                        <div class="moive-background-img">
 
-                        </div>
-                        <h1>The Gold Rush</h1>
-                        <p><strong>Released date: </strong>1925-07-13</p>
-                        <p><strong>Summary: </strong>A prospector goes to the Klondike during the 1890s gold rush in
-                            hopes of making his fortune,
-                            and is smitten with a girl he sees in a dance hall.</p>
-                        <p><strong>Genre: </strong>Action</p>
-
-                        <div class="director-list-wrapper">
-                            <h2>Director list</h2>
-                            <ul style="list-style: none; display: inline-flex;">
-                                <li>Director list</li>
-                                <li>Director list</li>
-                            </ul>
-                        </div>
-
-                        <div class="writer-list-wrapper">
-                            <h2>Writer list</h2>
-                            <ul style="list-style: none; display: inline-flex;">
-                                <li>Writer list</li>
-                                <li>Writer list</li>
-                            </ul>
-                        </div>
-
-                        <div class="actor-list-wrapper container p-0">
-                            <h2>Actor list</h2>
-                            <div class="row" style="background-color: transparent !important;">
-                                <div class="col-md-3 mt-2">
-                                    <div class="col-md-12 p-2"
-                                        style="background-color: black; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer">
-                                        <img src="https://m.media-amazon.com/images/M/MV5BNTFkOTk0YzctNDcyOS00YmFlLWEzMzktMmNlMGQ1Njg2MzllXkEyXkFqcGdeQXVyMzI5NDcxNzI@._V1_Ratio0.7727_AL_.jpg"
-                                            alt="" style="width: 100%">
-                                        <h2 class="actor-name">Charles Chaplin</h2>
-                                        <p class="actor-role">The Lone Prospector</p>
-                                    </div>
+                    <div v-else class=" container search-page">
+                        <div class="row">
+                            <div class="col-md-4 mt-2 ">
+                                <div class="col-md-12 p-0 card search-page-movie">
+                                    <img src="https://m.media-amazon.com/images/M/MV5BZjhhMThhNDItNTY2MC00MmU1LTliNDEtNDdhZjdlNTY5ZDQ1XkEyXkFqcGdeQXVyNjc1NTYyMjg@._V1_Ratio0.6762_AL_.jpg" alt=""
+                                    style="width: 100%">
+                                    <h2 class="movie-title">A spider man</h2>
+                                    <p class="movie-date">(2003)</p>
                                 </div>
                             </div>
+
+                            <div class="col-md-4 mt-2 ">
+                                <div class="col-md-12 p-0 card search-page-movie">
+                                    <img src="https://m.media-amazon.com/images/M/MV5BZjhhMThhNDItNTY2MC00MmU1LTliNDEtNDdhZjdlNTY5ZDQ1XkEyXkFqcGdeQXVyNjc1NTYyMjg@._V1_Ratio0.6762_AL_.jpg" alt=""
+                                    style="width: 100%">
+                                    <h2 class="movie-title">A spider man</h2>
+                                    <p class="movie-date">(2003)</p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 mt-2 ">
+                                <div class="col-md-12 p-0 card search-page-movie">
+                                    <img src="https://m.media-amazon.com/images/M/MV5BZjhhMThhNDItNTY2MC00MmU1LTliNDEtNDdhZjdlNTY5ZDQ1XkEyXkFqcGdeQXVyNjc1NTYyMjg@._V1_Ratio0.6762_AL_.jpg" alt=""
+                                    style="width: 100%">
+                                    <h2 class="movie-title">A spider man</h2>
+                                    <p class="movie-date">(2003)</p>
+                                </div>
+                            </div>
+                             <!-- row -->
                         </div>
-
-
-
-
+                       
+                      
                     </div>
-
                 </div>
-                <!-- body -->
+                <!-- container -->
 
 
 
