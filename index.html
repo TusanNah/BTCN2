@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="./style.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>BTCN2</title>
+    <script>
+        import myData from './db/data.js'
+        console.log(myData);
+    </script>
+
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Fontawesome -->
+
+
+
+</head>
+
+<body>
+    <!-- <script type="importmap">
+        {
+          "imports": {
+            "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+          }
+        }
+    </script>
+    <script type="module">
+        import { createApp } from "vue";
+        import main from "./main.js"
+        createApp(main).mount("#app");
+    </script> -->
+
+    <div id="app">
+        <div class="app-container container">
+            <div class="row">
+                <header class="header bg-white rounded">
+                    <span>21120589</span>
+                    <h1>Movies info</h1>
+
+                    <div class="wrapper">
+                        <div class="span">key API</div>
+
+                    </div>
+                </header>
+
+                <nav class="navbar navbar-expand-lg mt-2 bg-white rounded">
+                    <div class="container">
+                        <a class="fw-bold navbar-brand p-0" href="#" v-on:click="handleHome">Home</a>
+
+                        <div class="navbar__searching-wrapper">
+                            <form class="d-flex navbar__form" action="" role="search">
+                                <input type="text" style="outline: none;" class="navbar__form-input rounded" id=""
+                                    placeholder="Search" v-model="searchInput">
+                                <button type="button" class="btn btn-mine ml-2"
+                                    v-on:click="handleSearch">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </nav>
+
+                <div class="container">
+                    <div v-if="isHomePage" class="home-page container p-0">
+                        <div class="movie-theatre mt-2" style="display: flex;">
+                            <a href="./movie.html" class="rounded" style="margin: auto;">
+                                <img src="https://m.media-amazon.com/images/M/MV5BZjhhMThhNDItNTY2MC00MmU1LTliNDEtNDdhZjdlNTY5ZDQ1XkEyXkFqcGdeQXVyNjc1NTYyMjg@._V1_Ratio0.6762_AL_.jpg"
+                                    alt="" class="rounded" style="width: 400px; ">
+                            </a>
+
+                            <button class="btn btn-default fs-2 text-white pr-3">></button>
+                        </div>
+                        <!-- movie-theatre -->
+
+                        <div class="movie-popular" >
+                            <h2 class="mt-3" style="margin: 0;">Most popular</h2>
+
+                            <div class="movie-popular__wrapper d-flex align-items-center">
+                                <button class="btn btn-default fs-2 text-white">&lt</button>
+                                <a href="./movie.html" class="rounded movie-item">
+                                    <img src="https://m.media-amazon.com/images/M/MV5BZjhhMThhNDItNTY2MC00MmU1LTliNDEtNDdhZjdlNTY5ZDQ1XkEyXkFqcGdeQXVyNjc1NTYyMjg@._V1_Ratio0.6762_AL_.jpg"
+                                        alt="" class="rounded" style="width: 100%; height: 60%">
+                                </a>
+
+                                <a href="./movie.html" class="rounded movie-item">
+                                    <img src="https://m.media-amazon.com/images/M/MV5BZjhhMThhNDItNTY2MC00MmU1LTliNDEtNDdhZjdlNTY5ZDQ1XkEyXkFqcGdeQXVyNjc1NTYyMjg@._V1_Ratio0.6762_AL_.jpg"
+                                        alt="" class="rounded" style="width: 100%; height: 60%">
+                                </a>
+
+                                <a href="./movie.html" class="rounded movie-item">
+                                    <img src="https://m.media-amazon.com/images/M/MV5BZjhhMThhNDItNTY2MC00MmU1LTliNDEtNDdhZjdlNTY5ZDQ1XkEyXkFqcGdeQXVyNjc1NTYyMjg@._V1_Ratio0.6762_AL_.jpg"
+                                        alt="" class="rounded" style="width: 100%; height: 60%">
+                                </a>
+                                <button class="btn btn-default fs-2 text-white">></button>
+                            </div>
+                        </div>
+                         <!-- movie-popular -->
+
+                         <div class="movie-popular">
+                            <h2 class="mt-3" style="margin: 0;">Top rating</h2>
+
+                            <div class="movie-popular__wrapper d-flex align-items-center">
+                                <button class="btn btn-default fs-2 text-white">&lt</button>
+                                <a href="./movie.html" class="rounded movie-item">
+                                    <img src="https://m.media-amazon.com/images/M/MV5BZjhhMThhNDItNTY2MC00MmU1LTliNDEtNDdhZjdlNTY5ZDQ1XkEyXkFqcGdeQXVyNjc1NTYyMjg@._V1_Ratio0.6762_AL_.jpg"
+                                        alt="" class="rounded" style="width: 100%;">
+                                </a>
+
+                                <a href="./movie.html" class="rounded movie-item">
+                                    <img src="https://m.media-amazon.com/images/M/MV5BZjhhMThhNDItNTY2MC00MmU1LTliNDEtNDdhZjdlNTY5ZDQ1XkEyXkFqcGdeQXVyNjc1NTYyMjg@._V1_Ratio0.6762_AL_.jpg"
+                                        alt="" class="rounded" style="width: 100%;">
+                                </a>
+
+                                <a href="./movie.html" class="rounded movie-item">
+                                    <img src="https://m.media-amazon.com/images/M/MV5BZjhhMThhNDItNTY2MC00MmU1LTliNDEtNDdhZjdlNTY5ZDQ1XkEyXkFqcGdeQXVyNjc1NTYyMjg@._V1_Ratio0.6762_AL_.jpg"
+                                        alt="" class="rounded" style="width: 100%;">
+                                </a>
+                                <button class="btn btn-default fs-2 text-white">></button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- home-page -->
+
+
+                    <div v-else class="search-page"></div>
+                </div>
+                <!-- container -->
+
+
+
+            </div>
+            <!-- class="row" -->
+
+        </div>
+    </div>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

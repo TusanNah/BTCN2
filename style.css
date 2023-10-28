@@ -1,0 +1,41 @@
+* {
+    box-sizing: border-box;
+}
+
+#app {
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.app-container {
+    max-width: 1200px !important;
+    margin: 0 !important;
+}
+.row {
+    padding: 3px;
+    background-color: rgb(208, 207, 206) ;
+}
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-mine {
+    border: 1px solid green !important;
+    color: green !important;
+    outline: none !important;
+}
+.movie-list {
+    padding: 0;
+    list-style: none;
+    display: inline-flex;
+}
+.movie-item {
+    display: block;
+    padding: 3px;
+}
