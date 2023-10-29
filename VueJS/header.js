@@ -1,11 +1,22 @@
 export default {
     data(){
         return {
-
+            lightMode: true,
+            darkMode: false,
+        }
+    },
+    methods: {
+        changeMode() {
+            this.lightMode = !this.lightMode;
+            this.darkMode = !this.darkMode;
+            this.$emit('change-mode');
         }
     },
     template: `
-    <header class="header bg-white rounded">
+    <header class="header rounded" :class="{
+        'bg-black text-white border border-1': darkMode,
+        'bg-white text-black': lightMode
+      }">
                     <span>21120589</span>
                     <h1>Movies info</h1>
 
@@ -13,8 +24,10 @@ export default {
                         <div class="span">21589
                         </div>
                         <div style="display: flex; align-items: center;">
-                            <i class="fa-solid fa-toggle-off" style="cursor: pointer; font-size: 30px;"></i>
-                            <span style="margin-left: 12px">Light mode</span>
+                            <i v-if="lightMode" class="fa-solid fa-toggle-off" style="cursor: pointer; font-size: 30px;" @click="changeMode"></i>
+                            <i v-if="darkMode" class="fa-solid fa-toggle-on" style="cursor: pointer; font-size: 30px; color: blue" @click="changeMode"></i>
+                            <span v-if="lightMode" style="margin-left: 12px"><strong>Light mode</strong></span>
+                            <span v-if="darkMode" style="margin-left: 12px"><strong>Dark mode</strong></span>
                         </div>
 
                     </div>

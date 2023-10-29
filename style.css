@@ -16,7 +16,16 @@
 }
 .row {
     padding: 3px;
+    color: black;
     background-color: rgb(208, 207, 206) ;
+}
+.light-mode {
+  background-color: rgb(208, 207, 206) !important ;
+  color: black !important;
+}
+.dark-mode {
+  background-color: black;
+  color: white !important;
 }
 .header {
     width: 100%;

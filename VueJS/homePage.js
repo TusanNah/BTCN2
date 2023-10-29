@@ -1,10 +1,6 @@
 import { fetch } from "./dbProvider.js";
 
 export default {
-    props: {
-        // use props to receive data from parent
-        homePageData: Object,
-    },
     data() {
         return {
             hoveredMovie: null,
@@ -64,7 +60,7 @@ export default {
         handleRightPopularMoviesButton() {
             this.currentPopularMoviesPage += 1;
             var page = this.currentPopularMoviesPage
-            if (this.currentPopularMoviesPage > 4 ) {
+            if (this.currentPopularMoviesPage > 6) {
                 this.currentPopularMoviesPage = 0
                 page = this.currentPopularMoviesPage
             }
@@ -128,10 +124,8 @@ export default {
 
         async handleHomePage() {
             var movies = await fetch('get/movie/?per_page=300&page=1');
-            movies = movies.items
+            movies = movies.items;
             this.Movies = movies;
-            console.log('this.Movies ', this.Movies);
-
             var popularMovies = await fetch('get/mostpopular/?per_page=30&page=1')
             // console.log('popularMovies ', popularMovies)
             var ratingMovies =  await fetch('get/top50/?per_page=30&page=1');
@@ -152,6 +146,7 @@ export default {
             for (var i = 0; i < 3; ++i) {
                 this.threeRatingMovies.push(this.topRatingMovies[i]);
             }
+            this.$emit('handled-homepage');
         },
         movieClick(movie) {
             this.movie = movie;
@@ -170,7 +165,7 @@ export default {
                             @mouseenter="hoveredMovie = currentTheaterMovie" @mouseleave="hoveredMovie = null" @click="movieClick(currentTheaterMovie)">
                                 <img v-bind:src="currentTheaterMovie.image"
                                     :alt="currentTheaterMovie.title" class="rounded" 
-                                    style="width: 400px; height: 650px">
+                                    style="width: 400px; height: 600px">
                                 <div class="card text-bg-dark text-center" 
                                 style="border: none !important; position: absolute; width: 100%; left: 0; bottom: 5px; background-color: transparent !important; "> {{ currentTheaterMovie.title }} <br> {{currentTheaterMovie.year}}
                                 </div>
@@ -183,7 +178,7 @@ export default {
                         <div class="movie-popular">
                             <h2 class="mt-3" style="margin: 0;">Most popular</h2>
 
-                            <div class="movie-popular__wrapper" :class="{'overflow-hidden': slideRightPopular || slideLeftPopular }" style ="display: flex; ">
+                            <div class="movie-popular__wrapper mt-2" :class="{'overflow-hidden': slideRightPopular || slideLeftPopular }" style ="display: flex; ">
                                 <button class="btn btn-default fs-2 text-white" v-on:click="handleLeftPopularMoviesButton">&lt</button>
                                 <div  class="rounded movie-item" :class="{ 'slide-right': slideRightPopular, 'slide-left': slideLeftPopular}"
                                   style="flex: 1; height: 350px; text-decoration: none; cursor: pointer" 
@@ -201,7 +196,7 @@ export default {
                         <div class="movie-popular">
                             <h2 class="mt-3" style="margin: 0;">Top rating</h2>
 
-                            <div class="movie-popular__wrapper" :class="{'overflow-hidden': slideRightRating || slideLeftRating }" style = "display: flex" >
+                            <div class="movie-popular__wrapper mt-2" :class="{'overflow-hidden': slideRightRating || slideLeftRating }" style = "display: flex" >
                                 <button class="btn btn-default fs-2 text-white" v-on:click="handleLeftRatingMoviesButton">&lt</button>
                                 <div class="rounded movie-item" :class="{ 'slide-right': slideRightRating, 'slide-left': slideLeftRating}"
                                 style="position: relative; flex: 1; height: 350px; text-decoration: none; cursor: pointer" 

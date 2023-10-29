@@ -1,7 +1,10 @@
 export default {
+    props: {
+        lightMode: Boolean,
+        darkMode: Boolean,
+    },
     data() {
         return {
-
         }
     },
     methods: {
@@ -14,9 +17,12 @@ export default {
         }
     },
     template: `
-    <nav class="navbar navbar-expand-lg mt-2 bg-white rounded">
+    <nav class="navbar navbar-expand-lg mt-2 rounded" :class="{
+        'bg-black text-white border border-1': darkMode,
+        'bg-white text-black': lightMode
+      }">
                     <div class="container">
-                        <div v-on:click="homeClicked" class="fw-bold navbar-brand p-0" style="cursor: pointer">Home</div>
+                        <div v-on:click="homeClicked" class="fw-bold navbar-brand p-0" :class="{ 'text-white': darkMode}" style="cursor: pointer">Home</div>
 
                         <div class="navbar__searching-wrapper">
                             <form class="d-flex navbar__form" action="" role="search">

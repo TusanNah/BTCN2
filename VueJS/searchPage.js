@@ -1,6 +1,8 @@
 export default {
     props: {
         movies: Object,
+        lightMode: Boolean,
+        darkMode: Boolean,
     },
     data() {
         return {
@@ -15,10 +17,16 @@ export default {
         }
     },
     template: `
-    <div class="container search-page">
-                        <div class="row">
+    <div class="container search-page" >
+                        <div class="row" :class="{
+                            'bg-black text-white border border-1': darkMode,
+                            'bg-white text-black': lightMode
+                          }" >
                             <div class="col-md-4 mt-2" style="cursor: pointer" v-for="movie in movies" @click="movieClick(movie)">
-                                <div class="col-md-12 p-0 card search-page-movie">
+                                <div class="col-md-12 p-0 card search-page-movie" :class="{
+                                    'bg-black text-white border border-1': darkMode,
+                                    'bg-white text-black': lightMode
+                                  }"  >
                                     <img :src="movie.image" :alt="movie.title"
                                     style="width: 100%">
                                     <h2 class="movie-title" style="font-size: 22px">{{movie.title}}</h2>
