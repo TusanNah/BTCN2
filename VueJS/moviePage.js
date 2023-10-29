@@ -1,83 +1,105 @@
 export default {
     props: {
-        movie: Object
+        movie: Object,
     },
-    date(){
+    data() {
         return {
+            actorList: [],
+            directorList: [],
+            plotFull: null,
+            image: null,
 
+        }
+    },
+    methods: {
+        testData() {
+            this.actorList = this.movie.actorList;
+            this.directorList = this.movie.directorList;
         }
     },
     template: `
     <div class="movie-page container"
-    style="background-image: url(https://m.media-amazon.com/images/M/MV5BODI0NTFkMTItOTYyNC00MzQ4LTgzZWMtMzdhMDAyOWU5YjA5XkEyXkFqcGdeQXVyNzQ1ODk3MTQ@._V1_Ratio0.7046_AL_.jpg);">
-    <div class="moive-background-img">
+    style="color: white; background-repeat: no-repeat; background-size: cover; background-attachment: fixed"
+    :style="{ 'background-image': 'url(' + movie.image + ')' }">
+    <div style="color: white; background-color: rgba(0, 0, 0, 0.2); padding: 20px;">
+        <h1><strong>Title: </strong> {{movie.title}}</h1>
+        <p><strong>Released date: </strong>{{movie.releaseDate}}</p>
+        <p><strong>Summary: </strong>{{movie.plot}}</p>
+        <span><strong>Genre: </strong></span>
+        <span v-for="(genre, index) in movie.genreList">{{genre.value}}<span v-if="index < movie.genreList.length - 1">, </span>
+        </span>
+        <div class="director-list-wrapper">
+            <h2>Director list</h2>
+            <span style="cursor: pointer; margin-right: 3px" v-for="(person, index) in movie.directorList">{{person.name}}<span v-if="index < movie.directorList.length - 1">,</span></span>
+         </div>
 
+        <div class="writer-list-wrapper">
+            <h2>Writer list</h2>
+            <span style="cursor: pointer; margin-right: 3px" v-for="(person, index) in movie.writerList">{{person.name}}<span v-if="index < movie.writerList.length - 1">,</span></span>
+        </div>
     </div>
-    <h1>The Gold Rush</h1>
-    <p><strong>Released date: </strong>1925-07-13</p>
-    <p><strong>Summary: </strong>A prospector goes to the Klondike during the 1890s gold rush in
-        hopes of making his fortune,
-        and is smitten with a girl he sees in a dance hall.</p>
-    <p><strong>Genre: </strong>Action</p>
-
-    <div class="director-list-wrapper">
-        <h2>Director list</h2>
-        <span>Tuan Truong, Phuong Tay</span>
-    </div>
-
-    <div class="writer-list-wrapper">
-        <h2>Writer list</h2>
-        <span>Tuan Truong, Phuong Tay</span>
-
-    </div>
-
     <div class="actor-list-wrapper container p-0">
-        <h2>Actor list</h2>
+        <h2 style="padding-left: 20px">Actor list</h2>
         <div class="row" style="background-color: transparent !important;">
-            <div class="col-md-3 mt-2">
+            <div class="col-md-3 mt-2" v-for="actor in actorList">
                 <div class="col-md-12 p-2"
-                    style="background-color: black; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer">
-                    <img src="https://m.media-amazon.com/images/M/MV5BNTFkOTk0YzctNDcyOS00YmFlLWEzMzktMmNlMGQ1Njg2MzllXkEyXkFqcGdeQXVyMzI5NDcxNzI@._V1_Ratio0.7727_AL_.jpg"
-                        alt="" style="width: 100%">
-                    <h2 class="actor-name">Charles Chaplin</h2>
-                    <p class="actor-role">The Lone Prospector</p>
-                </div>
-            </div>
-
-            <div class="col-md-3 mt-2">
-                <div class="col-md-12 p-2"
-                    style="background-color: black; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer">
-                    <img src="https://m.media-amazon.com/images/M/MV5BNTFkOTk0YzctNDcyOS00YmFlLWEzMzktMmNlMGQ1Njg2MzllXkEyXkFqcGdeQXVyMzI5NDcxNzI@._V1_Ratio0.7727_AL_.jpg"
-                        alt="" style="width: 100%">
-                    <h2 class="actor-name">Charles Chaplin</h2>
-                    <p class="actor-role">The Lone Prospector</p>
-                </div>
-            </div>
-
-            <div class="col-md-3 mt-2">
-                <div class="col-md-12 p-2"
-                    style="background-color: black; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer">
-                    <img src="https://m.media-amazon.com/images/M/MV5BNTFkOTk0YzctNDcyOS00YmFlLWEzMzktMmNlMGQ1Njg2MzllXkEyXkFqcGdeQXVyMzI5NDcxNzI@._V1_Ratio0.7727_AL_.jpg"
-                        alt="" style="width: 100%">
-                    <h2 class="actor-name">Charles Chaplin</h2>
-                    <p class="actor-role">The Lone Prospector</p>
-                </div>
-            </div>
-
-            <div class="col-md-3 mt-2">
-                <div class="col-md-12 p-2"
-                    style="background-color: black; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer">
-                    <img src="https://m.media-amazon.com/images/M/MV5BNTFkOTk0YzctNDcyOS00YmFlLWEzMzktMmNlMGQ1Njg2MzllXkEyXkFqcGdeQXVyMzI5NDcxNzI@._V1_Ratio0.7727_AL_.jpg"
-                        alt="" style="width: 100%">
-                    <h2 class="actor-name">Charles Chaplin</h2>
-                    <p class="actor-role">The Lone Prospector</p>
+                    style="background-color: black; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; height: 450px">
+                    <img :src="actor.image"
+                        :alt="actor.name" style="width: 100%; height: 100%; object-fit: cover">
+                    <h2 class="actor-name" style="font-size: 22px; margin-top: 4px; font-weight: bolder">{{actor.name}}</h2>
+                    <p class="actor-role">{{actor.asCharacter}}</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
     `,
     mounted() {
-        console.log(this.movie);
+        this.testData();
     }
 }
+
+
+{/* <div class="movie-page container"
+    style="color: white; background-repeat: no-repeat; background-size: cover; background-attachment: fixed"
+    :style="{ 'background-image': 'url(' + movie.image + ')' }">
+    <div class="movie-background-img"
+    :style="{ 'background-image': 'url(' + movie.image + ')' }"></div>
+    <div style="color: white">
+        <h1><strong>Title: </strong> {{movie.title}}</h1>
+        <p><strong>Released date: </strong>{{movie.releaseDate}}</p>
+        <p><strong>Summary: </strong>{{movie.plot}}</p>
+        <span><strong>Genre: </strong></span>
+        <span v-for="(genre, index) in movie.genreList">{{genre.value}}<span v-if="index < movie.genreList.length - 1">, </span>
+        </span>
+        <div class="director-list-wrapper">
+            <h2>Director list</h2>
+            <span style="cursor: pointer; margin-right: 3px" v-for="(person, index) in movie.directorList">{{person.name}}<span v-if="index < movie.directorList.length - 1">,</span>
+         </div>
+
+        <div class="writer-list-wrapper">
+            <h2>Writer list</h2>
+            <span style="cursor: pointer; margin-right: 3px" v-for="(person, index) in movie.writerList">{{person.name}}<span v-if="index < movie.writerList.length - 1">,</span>
+        </div>
+    </div>
+
+
+  
+
+    <div class="actor-list-wrapper container p-0">
+        <h2>Actor list</h2>
+        <div class="row" style="background-color: transparent !important;">
+            <div class="col-md-3 mt-2" v-for="actor in actorList">
+                <div class="col-md-12 p-2"
+                    style="background-color: black; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; height: 450px">
+                    <img :src="actor.image"
+                        :alt="actor.name" style="width: 100%; height: 100%; object-fit: cover">
+                    <h2 class="actor-name" style="font-size: 22px; margin-top: 4px; font-weight: bolder">{{actor.name}}</h2>
+                    <p class="actor-role">{{actor.asCharacter}}</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div> */}

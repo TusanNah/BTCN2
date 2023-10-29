@@ -1,11 +1,14 @@
+import { fetch } from "./dbProvider.js";
+
 export default {
     props: {
-        // use props from receive data from parent
+        // use props to receive data from parent
         homePageData: Object,
     },
     data() {
         return {
             hoveredMovie: null,
+            Movies: [],
 
             movie: 0,
             topFiveLatestMovies: [],
@@ -41,7 +44,7 @@ export default {
 
             setTimeout(() => {
                 this.slideLeftTheater = false;
-            }, 500)
+            }, 1000)
         },
         handleLeftTheaterMoviesButton() {
             this.currentTheaterMoviePage -= 1;
@@ -53,7 +56,7 @@ export default {
 
             setTimeout(() => {
                 this.slideRightTheater = false;
-            }, 500)
+            }, 1000)
         },
 
 
@@ -61,7 +64,7 @@ export default {
         handleRightPopularMoviesButton() {
             this.currentPopularMoviesPage += 1;
             var page = this.currentPopularMoviesPage
-            if (this.currentPopularMoviesPage > 4) {
+            if (this.currentPopularMoviesPage > 4 ) {
                 this.currentPopularMoviesPage = 0
                 page = this.currentPopularMoviesPage
             }
@@ -71,7 +74,7 @@ export default {
             this.slideLeftPopular= true;
             setTimeout(() => {
                 this.slideLeftPopular = false;
-            }, 500)
+            }, 1000)
         },
         handleLeftPopularMoviesButton() {
             this.currentPopularMoviesPage -= 1;
@@ -87,7 +90,7 @@ export default {
             this.slideRightPopular= true;
             setTimeout(() => {
                 this.slideRightPopular = false;
-            }, 500)
+            }, 1000)
 
         },
 
@@ -105,7 +108,7 @@ export default {
             this.slideLeftRating = true;
             setTimeout(() => {
                 this.slideLeftRating = false;
-            }, 500)
+            }, 1000)
         },
         handleLeftRatingMoviesButton() {
             this.currentRatingMoviesPage -= 1;
@@ -120,26 +123,26 @@ export default {
             this.slideRightRating = true;
             setTimeout(() => {
                 this.slideRightRating = false;
-            }, 500)
+            }, 1000)
         },
 
-        handleHomePage() {
-            var movies = this.homePageData.Movies;
-            var popularMovies = this.homePageData.MostPopularMovies;
-            var ratingMovies = this.homePageData.Top50Movies;
+        async handleHomePage() {
+            var movies = await fetch('get/movie/?per_page=300&page=1');
+            movies = movies.items
+            this.Movies = movies;
+            console.log('this.Movies ', this.Movies);
+
+            var popularMovies = await fetch('get/mostpopular/?per_page=30&page=1')
+            // console.log('popularMovies ', popularMovies)
+            var ratingMovies =  await fetch('get/top50/?per_page=30&page=1');
+
+     
+            this.mostPopularMovies = popularMovies.items
+            this.topRatingMovies = ratingMovies.items
 
             for (var i = movies.length - 1; i >= movies.length - 5; i--) {
                 this.topFiveLatestMovies.push(movies[i]);
             }
-
-            for (var i = 0; i < 15; ++i) {
-                this.mostPopularMovies.push(popularMovies[i]);
-            }
-
-            for (var i = 0; i < 15; ++i) {
-                this.topRatingMovies.push(ratingMovies[i])
-            }
-
             this.currentTheaterMovie = this.topFiveLatestMovies[this.currentPopularMoviesPage]
 
             for (var i = 0; i < 3; ++i) {
@@ -151,8 +154,8 @@ export default {
             }
         },
         movieClick(movie) {
-            this.$emit('movie-clicked');
             this.movie = movie;
+            this.$emit('movie-clicked');
         }
 
     },
@@ -183,8 +186,8 @@ export default {
                             <div class="movie-popular__wrapper" :class="{'overflow-hidden': slideRightPopular || slideLeftPopular }" style ="display: flex; ">
                                 <button class="btn btn-default fs-2 text-white" v-on:click="handleLeftPopularMoviesButton">&lt</button>
                                 <div  class="rounded movie-item" :class="{ 'slide-right': slideRightPopular, 'slide-left': slideLeftPopular}"
-                                  style="position: relative; flex: 1; height: 350px; text-decoration: none; cursor: pointer" 
-                                  v-for="movie in threePopularMovies" @mouseenter="hoveredMovie = movie" @mouseleave="hoveredMovie = null" >
+                                  style="flex: 1; height: 350px; text-decoration: none; cursor: pointer" 
+                                  v-for="movie in threePopularMovies" @mouseenter="hoveredMovie = movie" @mouseleave="hoveredMovie = null" @click="movieClick(movie)">
                                     <img :src="movie.image"
                                         :alt="movie.title" class="rounded" style="top: 0; width: 100%; height: 100%; object-fit: fill;">
                                     <div v-if ="hoveredMovie === movie" class="card text-bg-dark text-center" style="position: absolute; left: 0; bottom: 3px; width: 100%; border-radius: 0 !important; "> {{ movie.title }} {{movie.year}}
@@ -202,7 +205,7 @@ export default {
                                 <button class="btn btn-default fs-2 text-white" v-on:click="handleLeftRatingMoviesButton">&lt</button>
                                 <div class="rounded movie-item" :class="{ 'slide-right': slideRightRating, 'slide-left': slideLeftRating}"
                                 style="position: relative; flex: 1; height: 350px; text-decoration: none; cursor: pointer" 
-                                v-for="movie in threeRatingMovies" @mouseenter="hoveredMovie = movie" @mouseleave="hoveredMovie = null">
+                                v-for="movie in threeRatingMovies" @mouseenter="hoveredMovie = movie" @mouseleave="hoveredMovie = null"  @click="movieClick(movie)">
                                     <img :src="movie.image"
                                         :alt="movie.title" class="rounded" style="width: 100%; height: 100%; object-fit: fill">
                                     <div v-if ="hoveredMovie === movie" class="card text-bg-dark text-center" style="position: absolute; left: 0; bottom: 3px; width: 100%; border-radius: 0 !important;"> {{ movie.title }} {{movie.year}}
@@ -218,7 +221,5 @@ export default {
 
     mounted() {
         this.handleHomePage();
-        console.log(this.topFiveLatestMovies[this.currentTheaterMoviePage].title);
-
     }
 }
