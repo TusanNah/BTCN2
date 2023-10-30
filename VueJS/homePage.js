@@ -1,4 +1,4 @@
-import { fetch } from "./dbProvider.js";
+import { fetch } from "./DBProvider.js";
 
 export default {
     data() {
@@ -185,7 +185,7 @@ export default {
                                   v-for="movie in threePopularMovies" @mouseenter="hoveredMovie = movie" @mouseleave="hoveredMovie = null" @click="movieClick(movie)">
                                     <img :src="movie.image"
                                         :alt="movie.title" class="rounded" style="top: 0; width: 100%; height: 100%; object-fit: fill;">
-                                    <div v-if ="hoveredMovie === movie" class="card text-bg-dark text-center" style="position: absolute; left: 0; bottom: 3px; width: 100%; border-radius: 0 !important; "> {{ movie.title }} {{movie.year}}
+                                    <div v-if ="hoveredMovie === movie" class="card text-bg-dark text-center movie-card" style="bottom: 3px; width: 100%; border-radius: 0!important; "> {{ movie.title }} {{movie.year}}
                                     </div>
                                 </div>
                                 <button class="btn btn-default fs-2 text-white" v-on:click="handleRightPopularMoviesButton">></button>
@@ -203,7 +203,7 @@ export default {
                                 v-for="movie in threeRatingMovies" @mouseenter="hoveredMovie = movie" @mouseleave="hoveredMovie = null"  @click="movieClick(movie)">
                                     <img :src="movie.image"
                                         :alt="movie.title" class="rounded" style="width: 100%; height: 100%; object-fit: fill">
-                                    <div v-if ="hoveredMovie === movie" class="card text-bg-dark text-center" style="position: absolute; left: 0; bottom: 3px; width: 100%; border-radius: 0 !important;"> {{ movie.title }} {{movie.year}}
+                                    <div v-if ="hoveredMovie === movie" class="card text-bg-dark text-center" style="bottom: 3px; width: 100%; border-radius: 0 !important;"> {{ movie.title }} {{movie.year}}
                                     </div>
                                 </div>
                                 <button class="btn btn-default fs-2 text-white" v-on:click="handleRightRatingMoviesButton">></button>

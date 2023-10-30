@@ -4,7 +4,7 @@ import HomepageComponent from './VueJS/homePage.js'
 import SearchPageComponent from './VueJS/searchPage.js'
 import MoviePageComponent from './VueJS/moviePage.js'
 import FooterComponent from './VueJS/footer.js'
-import { fetch } from './VueJS/dbProvider.js'
+import { fetch } from './VueJS/DBProvider.js'
 
 export default {
     data() {
@@ -74,7 +74,6 @@ export default {
             const searchMovies = await fetch(`search/movie/${searchInput}?per_page=6&page=1`)
             console.log('json-----------', searchMovies)
             this.searchMovies = searchMovies.items;
-            
         }
     },
     // mounted() {

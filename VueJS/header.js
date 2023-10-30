@@ -20,9 +20,8 @@ export default {
                     <span>21120589</span>
                     <h1>Movies info</h1>
 
-                    <div class="wrapper">
-                        <div class="span">21589
-                        </div>
+                    <div class="header__wrapper">
+                        <div class="key-api">21589</div>
                         <div style="display: flex; align-items: center;">
                             <i v-if="lightMode" class="fa-solid fa-toggle-off" style="cursor: pointer; font-size: 30px;" @click="changeMode"></i>
                             <i v-if="darkMode" class="fa-solid fa-toggle-on" style="cursor: pointer; font-size: 30px; color: blue" @click="changeMode"></i>

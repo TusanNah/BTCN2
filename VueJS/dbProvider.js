@@ -1,5 +1,30 @@
 import data from '../db/data.js';
 
+
+function getUrlParams(url) {
+  const splittedParams = url.split('/');
+  const type = splittedParams[0];
+  const className = splittedParams[1];
+  let pattern = splittedParams[2];
+  let paramsObject = {};
+  if (pattern.includes('?')) {
+    pattern = splittedParams[2].split('?')[0];
+    const paramStr = splittedParams[2].split('?')[1];
+    const params = paramStr.split('&');
+    paramsObject = params.reduce(((obj, value) => {
+      const temp = value.split('=');
+      if (temp[0] === 'per_page') {
+        return { ...obj, perPage: parseInt(temp[1], 10) }
+      }
+      if (temp[0] === 'page') {
+        return { ...obj, page: parseInt(temp[1], 10) }
+      }
+      return obj;
+    }), {});
+  }
+  return { type, className, pattern, params: paramsObject };
+}
+
 export const fetch = function (url) {
   return new Promise((resolve, reject) => {
     const { type, className, pattern, params } = getUrlParams(url);
@@ -22,18 +47,26 @@ function handleSearch(className, pattern, params) {
   let start = ((page - 1) * perPage);
   const end = perPage * page - 1;
   const result = [];
-  let tempData = null;
+  let tempData = null
   switch (className) {
     case 'movie':
       tempData = data.Movies;
       if (pattern) {
         tempData = data.Movies.filter((movie) => movie.title.includes(pattern) || movie.fullTitle.includes(pattern) || movie.keywords.includes(pattern));
+        console.log(tempData);
+        var temp = tempData.reduce((array, movie) => {
+          if (movie.similars) {
+            return [...array, movie.similars]
+          }
+        }, [] )
+        temp = temp.flat(Infinity);
+        tempData = tempData.concat(temp);
       }
       break;
     case 'name':
       tempData = data.Names;
       if (pattern) {
-        tempData = names.filter((name) => name.name.includes(pattern));
+        tempData = data.Names.filter((name) => name.name.includes(pattern));
       }
       break;
     case 'top50':
@@ -128,26 +161,3 @@ function handleGet(className, params) {
 }
 
 
-function getUrlParams(url) {
-  const splittedParams = url.split('/');
-  const type = splittedParams[0];
-  const className = splittedParams[1];
-  let pattern = splittedParams[2];
-  let paramsObject = {};
-  if (pattern.includes('?')) {
-    pattern = splittedParams[2].split('?')[0];
-    const paramStr = splittedParams[2].split('?')[1];
-    const params = paramStr.split('&');
-    paramsObject = params.reduce(((obj, value) => {
-      const temp = value.split('=');
-      if (temp[0] === 'per_page') {
-        return { ...obj, perPage: parseInt(temp[1], 10) }
-      }
-      if (temp[0] === 'page') {
-        return { ...obj, page: parseInt(temp[1], 10) }
-      }
-      return obj;
-    }), {});
-  }
-  return { type, className, pattern, params: paramsObject };
-}

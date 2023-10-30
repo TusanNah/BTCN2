@@ -29,8 +29,8 @@ export default {
                                   }"  >
                                     <img :src="movie.image" :alt="movie.title"
                                     style="width: 100%">
-                                    <h2 class="movie-title" style="font-size: 22px">{{movie.title}}</h2>
-                                    <p class="movie-date">{{movie.year}}</p>
+                                    <h2 class="movie-title mt-2" style="font-size: 22px">{{movie.title}}</h2>
+                                    <p v-if="movie.year" class="movie-date">({{movie.year}})</p>
                                 </div>
                             </div>
                              <!-- row -->
